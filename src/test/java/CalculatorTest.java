@@ -1,3 +1,4 @@
+import com.beust.ah.A;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
@@ -58,6 +59,75 @@ public  void addTest(){
 
     }
 
+    @Test
+    public  void subNumbers(){
+        WebElement number1= driver.findElement(AppiumBy.id("com.android.calculator2:id/digit_7"));
+        number1.click();
+
+        driver.findElement((AppiumBy.accessibilityId("minus"))).click();
+
+        WebElement number2 = driver.findElement((AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.android.calculator2:id/digit_2\")")));
+        number2.click();
+
+        driver.findElement(AppiumBy.accessibilityId("equals")).click();
+
+        WebElement result = driver.findElement(AppiumBy.id("com.android.calculator2:id/formula"));
+        String finalResult =result.getText();
+
+        if(finalResult.equals("5")){
+            System.out.println("Test is Successfully Passed");
+        }else {
+            System.out.println("Test is Failed");
+        }
 
 
+
+    }
+
+    @Test
+    public void multiNumbers(){
+        WebElement number1 = driver.findElement(AppiumBy.id("com.android.calculator2:id/digit_4"));
+        number1.click();
+
+        driver.findElement(AppiumBy.accessibilityId("times")).click();
+
+        WebElement number2 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.android.calculator2:id/digit_5\")"));
+        number2.click();
+
+        driver.findElement(AppiumBy.xpath("//android.widget.ImageView[@content-desc=\"equals\"]")).click();
+
+        WebElement result =driver.findElement(AppiumBy.className("android.widget.EditText"));
+
+        String finalResult = result.getText();
+
+        if(finalResult.equals("20")){
+            System.out.println("Test is Passed and the final answer is " + finalResult);
+        }else{
+            System.out.println("Test is Failed");
+        }
+
+    }
+    @Test
+    public  void divNumbers(){
+        WebElement number1 = driver.findElement(AppiumBy.id("com.android.calculator2:id/digit_8"));
+        number1.click();
+        driver.findElement(AppiumBy.accessibilityId("divide")).click();
+
+        WebElement number2 = driver.findElement(AppiumBy.id("com.android.calculator2:id/digit_4"));
+        number2.click();
+
+        driver.findElement(AppiumBy.accessibilityId("equals")).click();
+
+        WebElement result =driver.findElement(AppiumBy.className("android.widget.EditText"));
+
+        String finalResult = result.getText();
+
+        if(finalResult.equals("2")){
+            System.out.println("Test is Passed & the Final Result is "+ finalResult);
+        }else{
+            System.out.println("Test is Failed");
+        }
+    }
 }
+
+
